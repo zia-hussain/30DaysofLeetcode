@@ -3,14 +3,20 @@
  * @return {number[][]}
  */
 var generate = function(numRows) {
-    if (numRows === 0) return [];
-    const triangle = [[1]];
-    for (let i = 1; i < numRows; i++) {
-        const row = [1];
-        for (let j = 1; j < i; j++) {
-            row.push(triangle[i - 1][j - 1] + triangle[i - 1][j])}
-        row.push(1);
+    const triangle = [];
+
+    for (let i = 0; i < numRows; i++) {
+        const row = [];
+        for (let j = 0; j <= i; j++) {
+            if (j === 0 || j === i) {
+                row.push(1); // First and last elements of each row are always 1
+            } else {
+                // Calculate element using binomial coefficient formula
+                row.push(triangle[i - 1][j - 1] + triangle[i - 1][j]);
+            }
+        }
         triangle.push(row);
     }
+
     return triangle;
 }
