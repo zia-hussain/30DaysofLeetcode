@@ -10,7 +10,8 @@
  * @return {ListNode}
  */
 var reverseList = function(head) {
-        let curr = head;
+ // iterative approach
+  let curr = head;
   let prev = null;
   let next = null;
 
@@ -21,4 +22,5 @@ var reverseList = function(head) {
     curr = next;
   }
   return prev;
+    
 };
