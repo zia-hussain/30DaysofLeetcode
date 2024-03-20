@@ -7,16 +7,10 @@ var merge = function(intervals) {
     const merged = [];
     let currentInterval = intervals[0];
     for (let i = 1; i < intervals.length; i++) {
-        const currentStart = currentInterval[0];
-        const currentEnd = currentInterval[1];
-        const nextStart = intervals[i][0];
-        const nextEnd = intervals[i][1];
-        if (nextStart <= currentEnd) {
-            currentInterval[1] = Math.max(currentEnd, nextEnd);
-        } else {
-            merged.push(currentInterval);
-            currentInterval = intervals[i];
-        }}
-        merged.push(currentInterval);
+        const [currentStart, currentEnd] = currentInterval;
+        const [nextStart, nextEnd] = intervals[i];
+        nextStart <= currentEnd ? currentInterval[1] = Math.max(currentEnd, nextEnd) : (merged.push(currentInterval), currentInterval = intervals[i]);
+    }
+    merged.push(currentInterval);
     return merged;
 };
