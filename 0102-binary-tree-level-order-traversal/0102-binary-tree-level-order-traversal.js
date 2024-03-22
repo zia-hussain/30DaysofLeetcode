@@ -13,7 +13,6 @@
 var levelOrder = function(root) {
     if (!root)
     return [];
-    
   const ans = [];
   const q = [root];
 
